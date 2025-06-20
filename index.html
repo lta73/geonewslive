@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoNewsLive.com - Watch Geo News Live</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="max-w-4xl mx-auto p-4">
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold text-center mb-2">🌐 GeoNewsLive.com</h1>
+      <p class="text-center text-sm text-gray-600">Watch Geo News live & stay updated with AI-powered summaries</p>
+    </header>
+
+    <!-- Livestream Embed -->
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">📺 Live Stream</h2>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe class="w-full h-96" src="https://www.youtube.com/embed/live_stream?channel=UCv-dy3bnhN8l-MaFslPxdJg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- AI Summary Block -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+      <h2 class="text-xl font-semibold mb-2">🧠 AI Summary of Livestream</h2>
+      <p class="text-gray-700 italic">Latest update: Pakistan elections remain controversial as protests erupt in major cities. Geo News reports live from Islamabad.</p>
+    </div>
+
+    <!-- User Interest Selector -->
+    <div class="bg-white rounded-lg shadow-md p-4">
+      <h2 class="text-xl font-semibold mb-2">💬 What are you most interested in?</h2>
+      <select class="w-full p-2 border rounded" onchange="alert('Coming soon!')">
+        <option>Politics</option>
+        <option>Weather</option>
+        <option>Sports</option>
+        <option>Finance & Economy</option>
+      </select>
+    </div>
+  </div>
+</body>
+</html>
