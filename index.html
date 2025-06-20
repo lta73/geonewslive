@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GeoNewsLive.com - Watch Geo News Live</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KF6B15QR3D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-KF6B15QR3D');
+  </script>
 </head>
 <body class="bg-gray-100 text-gray-900">
   <div class="max-w-4xl mx-auto p-4">
@@ -25,11 +33,13 @@
     <!-- AI Summary Block -->
     <div class="bg-white rounded-lg shadow-md p-4 mb-6">
       <h2 class="text-xl font-semibold mb-2">🧠 AI Summary of Livestream</h2>
-      <p class="text-gray-700 italic">Latest update: Pakistan elections remain controversial as protests erupt in major cities. Geo News reports live from Islamabad.</p>
+      <div id="ai-summary" class="text-gray-700 italic">
+        Loading AI summary...
+      </div>
     </div>
 
     <!-- User Interest Selector -->
-    <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="bg-white rounded-lg shadow-md p-4 mb-6">
       <h2 class="text-xl font-semibold mb-2">💬 What are you most interested in?</h2>
       <select class="w-full p-2 border rounded" onchange="alert('Coming soon!')">
         <option>Politics</option>
@@ -38,6 +48,55 @@
         <option>Finance & Economy</option>
       </select>
     </div>
+
+    <!-- About Section -->
+    <section class="bg-white p-4 mt-8 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">📖 About GeoNewsLive.com</h2>
+      <p class="text-gray-700">
+        GeoNewsLive.com is an independent platform created to simplify global access to Geo News’ livestream broadcasts. 
+        We embed official live videos and use AI tools to generate real-time summaries of the news as it unfolds.
+        Our goal is to provide a faster, mobile-friendly, and accessible way for international audiences to stay informed on Pakistan’s political, social, and economic landscape.
+        <br><br>
+        This site is not affiliated with or endorsed by the Geo News network. We respect their journalism and aim to build technology that enhances its reach and accessibility.
+      </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="bg-white p-4 mt-8 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">📬 Contact Us</h2>
+      <form action="https://formspree.io/f/mwkgyyeq" method="POST" class="space-y-4">
+        <input type="email" name="email" placeholder="Your email" required class="w-full p-2 border rounded">
+        <textarea name="message" placeholder="Your message" required class="w-full p-2 border rounded h-32"></textarea>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
+      </form>
+    </section>
+
+    <!-- Policy Section -->
+    <section class="bg-white p-4 mt-8 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">🔐 Privacy Policy</h2>
+      <p class="text-gray-700">
+        We do not collect personal information unless you voluntarily submit it via the contact form. All data submitted is kept confidential and not shared with third parties. We use Google Analytics to track overall site traffic, without identifying individual users.
+      </p>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="bg-white p-4 mt-8 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">⚠️ Disclaimer</h2>
+      <p class="text-gray-700">
+        GeoNewsLive.com is not affiliated with or endorsed by Geo News Network. We do not claim ownership over any embedded video content and simply provide public access to existing livestreams with AI-enhanced summaries. All trademarks belong to their respective owners.
+      </p>
+    </section>
   </div>
+
+  <script>
+    fetch("https://raw.githubusercontent.com/letuananh0205/geonewslive/main/ai-summary.json")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("ai-summary").innerText = data.summary || "No summary available.";
+      })
+      .catch(() => {
+        document.getElementById("ai-summary").innerText = "Failed to load summary.";
+      });
+  </script>
 </body>
 </html>
