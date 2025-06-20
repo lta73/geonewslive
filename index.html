@@ -11,7 +11,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-KF6B15QR3D');
   </script>
 </head>
@@ -26,9 +25,10 @@
     <div class="mb-6">
       <h2 class="text-xl font-semibold mb-2">📺 Live Stream</h2>
       <div class="aspect-w-16 aspect-h-9">
-       <iframe class="w-full h-96" src="https://www.youtube.com/embed/live_stream?channel=UC_vt34wimdCzdkrzVejwX9g" frameborder="0" allowfullscreen></iframe>
-
+        <iframe src="https://live.geo.tv/" class="w-full h-96" frameborder="0" allowfullscreen></iframe>
       </div>
+      <p class="text-center text-gray-600 mt-2">⚠️ The livestream is currently unavailable or not embeddable via YouTube. Please visit the <a href="https://live.geo.tv/" target="_blank" class="text-blue-600 underline">official Geo News live page</a>.</p>
+      <div id="countdown" class="text-center text-red-600 mt-2">Loading next live time...</div>
     </div>
 
     <!-- AI Summary Block -->
@@ -98,6 +98,28 @@
       .catch(() => {
         document.getElementById("ai-summary").innerText = "Failed to load summary.";
       });
+
+    const schedule = ['06:00','07:00','08:00','21:05'];
+    function updateCountdown() {
+      const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Karachi" }));
+      let next;
+      for(const t of schedule){
+        const [h,m] = t.split(':');
+        const d = new Date(now);
+        d.setHours(parseInt(h), parseInt(m), 0, 0);
+        if(d > now){ next = d; break; }
+      }
+      if(!next){
+        next = new Date(now);
+        const [h,m] = schedule[0].split(':');
+        next.setDate(now.getDate()+1);
+        next.setHours(parseInt(h), parseInt(m), 0, 0);
+      }
+      const diff = next - now;
+      const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+      document.getElementById('countdown').innerText = `Next live in ${h}h ${m}m ${s}s`;
+    }
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
